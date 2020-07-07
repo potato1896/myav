@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'TaskController@index');
+Route::get('/magnet/{name}', 'TaskController@magnet');
+Route::get('/video/{name}', 'TaskController@video');
+Route::get('/content/{type}/{id}', 'TaskController@play');
+Route::get('/dplayer/{id}', 'TaskController@dplayer');
