@@ -40,7 +40,7 @@ body{background-color: #1b1b1b}
     content: "";
     width: 0;
     height: 2px;
-    background: orangered;
+    background: #ff4500;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -106,13 +106,13 @@ body{background-color: #1b1b1b}
 	color: #666;
 }
 .header .navbar_nav li.dropdown:hover .dropdown_menu a:hover{
-	color: #fff;
+	color: black;
 	background: orange;
 }
 /*白色背景的头部*/
 .header.on{
-	background: #fff;
-	border-bottom: 1px solid #ccc;
+	background:black;
+	border-bottom: 1px solid black;
 }
 .header.on .left .img1{
 	display: none;
@@ -311,11 +311,11 @@ body{background-color: #1b1b1b}
 	.header #navToggle.open span:after {
 		background: #4f4f4f;
 	}
-	
+
 	.header .nav{
 		display: none;
 	}
-	
+
 	.banner img{
 		height: 600px;
 		object-fit: cover;

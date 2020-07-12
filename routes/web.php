@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'TaskController@index');
 Route::get('/magnet/{name}', 'TaskController@magnet');
-Route::get('/video/{name}', 'TaskController@video');
+Route::get('/magnet/{name}/{type}', 'TaskController@magnetwhere');
+
 Route::get('/content/{type}/{id}', 'TaskController@play');
-Route::get('/dplayer/{id}', 'TaskController@dplayer');
+Route::get('/player/{id}', 'TaskController@player');
+Route::get('/iplayer/{id}', 'TaskController@iplayer');
+Route::get('/rand/{id}/{catalog}', 'TaskController@rand');
+Route::get('/pic/{id}', 'TaskController@pic');
+Route::get('/piclist/{type}', 'TaskController@piclist');
+Route::get('/videolist/{type}', 'TaskController@videolist');

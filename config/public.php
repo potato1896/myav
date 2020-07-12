@@ -1,0 +1,16 @@
+<?php
+return[
+    'video_sub'=>27139,
+    'video_censored'=>9876,
+    'video_uncensored'=>25021,
+    'video_selfie'=>186000,
+    'video_west'=>5501,
+    'video_cartoon'=>2660,
+    'video_xreted'=>5365,
+    'magnet_censored'=>27139,
+    'magnet_uncensored'=>27139,
+    'magnet_west'=>27139,
+    'pic_host'=>'silkengirl',
+    'pic_catalog'=>'少女,宝贝儿,硬核,女同,比基尼,色情,业余的',
+    'video_catalog'=>'中文字幕,有码,无码,自拍,欧美,卡通,三级',
+];
