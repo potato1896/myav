@@ -1,10 +1,6 @@
 @extends('layouts.master2')
 @section('title')
-    @if($column==3)
-        西洋靓女
-    @elseif($column==4)
-        亚洲靓女
-    @endif
+    成人美图
     _{{$catalog}}
 @endsection
 @section('link')
@@ -23,7 +19,7 @@
                     <ul class="dropdown-menu" role="menu">
                         @for($i=0;$i<count($catalogs) ;$i++)
                             @if($catalogs[$i]!=$catalog)
-                                <li><a href="/piclist/{{$catalogs[$i]}}">{{$catalogs[$i]}}</a></li>
+                                <li><a href="/piclist2/{{$catalogs[$i]}}">{{$catalogs[$i]}}</a></li>
                             @endif
                         @endfor
                     </ul>
@@ -35,7 +31,10 @@
                     @foreach($pics as $pic)
                         <div class="box">
                             <div class="pic">
-                                <a title="{{$pic->title}}"  href="/pic/{{$pic->id}}"> <img  alt="{{$pic->title}}"  src="{{$pic->thumbnail}}" /></a>
+                                <a title="{{$pic->title}}"  href="/pic2/{{$pic->id}}"> <img  alt="{{$pic->title}}"  src="{{$pic->thumbnail}}" /></a>
+                                <p>
+                                    {{$pic->title}}
+                                {{$pic->release_date}}</p>
                             </div>
                         </div>
                     @endforeach

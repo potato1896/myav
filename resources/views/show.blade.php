@@ -1,12 +1,65 @@
 @extends('layouts.master')
 @section('title')
-   {{$column}}_{{$movies->title}}
+   {{$movies->title}}
 @endsection
 @section('link')
-    <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="{{ URL::asset('css/magnific-popup.css')}}">
     <script src="{{ URL::asset('js/jquery.magnific-popup.min.js')}}"></script>
+    <style>
+        * {
 
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+        .waterfalls {
+
+            padding:10px;
+
+            position: relative;
+
+            margin: 0 auto;
+            columns:170px;
+
+            /* 每列每个元素最小的宽度 */
+
+            column-gap: 20px; /* 每列的距离，不设置这个可以通过margin来设置边距 */
+
+        }
+
+        .box {
+
+            break-inside: avoid; /* 这个是设置多列布局页面下的内容盒子如何中断，如果不加上这个，每列的头个元素就不会置顶，配合columns使用 */
+
+            margin-bottom:15px;
+
+            /* 如果是非图片瀑布流的话就加上背景吧，不然感觉不太好看。 */
+
+            /* background:dodgerblue; */
+
+            color:white;
+
+            border-radius:5px;
+
+        }
+
+        .pic img {
+
+            width: 100%; /* 建议每个图片宽高为100%，如果不设置宽高，就会溢出外层盒子的，或者设置固定宽度，最好不要宽过外层盒子或者高过外层盒子。这里说的外层盒子就是 html 代码里的 .box */
+
+            height: 100%;
+
+            border-radius: 5px;
+
+            border: 1px solid #ccc;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        }
+    </style>
 @endsection
 @section('content')
 
@@ -24,31 +77,54 @@
         <p>
         <h4> 番号：<span style="color: red">{{$movies->designation}}</span></h4>
         </p>
+        @if(isset($movies->releasedate))
         <p>
            <h4> 发行日期：{{$movies->releasedate}}</h4>
         </p>
+        @endif
+        @if(isset($movies->length))
         <p>
-        <h4> 长度：{{$movies->releasedate}}</h4>
+        <h4> 长度：{{$movies->length}}分钟</h4>
         </p>
+        @endif
+        @if(isset($movies->director))
         <p>
         <h4> 导演：{{$movies->director}}</h4>
         </p>
+        @endif
+        @if(isset($movies->studio))
         <p>
         <h4> 制作商：{{$movies->studio}}</h4>
         </p>
+        @endif
+        @if(isset($movies->label))
         <p>
         <h4> 发行商：{{$movies->label}}</h4>
         </p>
+        @endif
+        @if(isset($movies->series))
         <p>
         <h4> 系列：{{$movies->series}}</h4>
         </p>
+        @endif
+        @if(isset($tags))
         <p>
-        <h4> 标签：{{$movies->catalog}}</h4>
+        <h4> 标签：
+        @foreach($tags as $tag)
+            <a href="/tag/{{$column}}/{{$tag}}">{{$tag}}</a>
+            @endforeach
+        </h4>
         </p>
+        @endif
         <p>
-        <h4> 演员：{{$movies->actor}}</h4>
+        @if(!\App\StringHelper::checkEmpty($movies->actor))
+        <h4> 演员：
+      @foreach($stars as $star)
+            <a href="/star/{{$star->id}}">{{$star->name}}</a>
+            @endforeach
+        </h4>
         </p>
-
+        @endif
 
     </div>
     </div>
@@ -114,7 +190,7 @@
     </div>
 @endif
 
-    @if(isset($movies->hasmag))
+    @if($movies->hasmag==1)
 
         <div class="row clearfix">
             <div class="col-md-12 column">
@@ -131,7 +207,19 @@
                         <tbody>
                         @foreach($magnets as $mag)
                          <tr>
-                            <td><h4><a href="{{$mag->content}}">{{$mag->name}}</a></h4></td>
+                            <td><h4><a href="{{$mag->content}}">{{$mag->name}}
+                                        @if($mag->hashd==1)
+                                            <button class="btn btn-xs btn-primary" disabled="disabled" title="包含字幕的磁力連結">高清</button>
+
+                                        @endif
+
+                                        @if($mag->hassub==1)
+                                            <button class="btn btn-xs btn-warning" disabled="disabled" title="包含字幕的磁力連結">字幕</button>
+                                        @endif
+                                        @if($mag->has3d==1)
+                                            <button class="btn btn-xs btn-warning" disabled="disabled" title="包含3D的磁力連結">3D</button>
+                                        @endif
+                                    </a></h4></td>
                              <td><h4><a href="{{$mag->content}}">{{$mag->size}}</a></h4></td>
                             <td><h4><a href="{{$mag->content}}">{{$mag->releasedate}}</a></h4></td></tr>
                         @endforeach
@@ -158,16 +246,18 @@
 
             <div class="row">
 
-                @foreach($movies2 as $mov)
-                    <div class="col-md-{{$num}}" style="margin-top: 10px;margin-bottom: 10px">
-                        <div class="thumbnail">
+                <div class="waterfalls" style="column-count: 5;">
+                    @foreach($movies2 as $mov)
+                        <div class="box">
+                            <div class="pic">
+                                <a title="{{$mov->title}}" data-title="{{$mov->title}}"  href="/content/show/{{$mov->id}}"> <img  alt="{{$mov->title}}"   src="{{$mov->thumbnail}}" /></a>
 
-                                <a title="{{$mov->title}}" data-title="{{$mov->title}}"  href="/content/show/{{$mov->id}}"> <img  alt="{{$mov->title}}"  height="250px" src="{{$mov->thumbnail}}" /></a>
-
+                            </div>
                         </div>
+                    @endforeach
 
-                    </div>
-                @endforeach
+                </div>
+
             </div>
         </div>
 

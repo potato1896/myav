@@ -22,9 +22,9 @@
 
             <h3>{{$movies->title}}</h3>
             @if($sign=='one')
-                <a href="/player/{{$movies->id}}"><button type="button" class="btn btn-default btn-inverse active">播放</button></a>
+                <a class = "col-md-offset-4 col-lg-offset-4col-xl-offset-4" href="/player/{{$movies->id}}"><button type="button" class="btn btn-default btn-inverse active">播放</button></a>
             @else
-                <a href="/iplayer/{{$movies->id}}"><button type="button" class="btn btn-default btn-inverse active">播放</button></a>
+                <a class = "col-md-offset-4 col-lg-offset-4col-xl-offset-4" href="/iplayer/{{$movies->id}}"><button type="button" class="btn btn-default btn-inverse active">播放</button></a>
                 <h4 style="color: white">有弹窗广告，非本站广告</h4>
             @endif
 

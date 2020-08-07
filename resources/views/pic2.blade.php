@@ -15,15 +15,13 @@
 
 
     <div class="row clearfix" style="margin-top:100px;">
-        <h4>{{$pic->title}} >点击下列小图可查看高清大图<</h4>
+        <h4>{{$pic->title}} </h4>
 
         <div class="col-md-12 column">
             <div class="galler">
             @foreach($imgs as $pic)
-                @if($loop->index<count($bigs))
 
-                        <a href="{{$bigs[$loop->index]}}"><img  referrerPolicy="no-referrer"  src="{{$pic}}"/></a>
-                @endif
+                        <img width="100%"  referrerPolicy="no-referrer"  src="{{$pic}}"/>
             @endforeach
             </div>
             <script>
